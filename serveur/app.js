@@ -36,7 +36,9 @@ app.use(bodyParser.urlencoded({extended: true}))
 
 
 // Routes
-
+app.get('/', (req,res)=>{
+    res.send("Salut")
+})
 
 
 module.exports=app
