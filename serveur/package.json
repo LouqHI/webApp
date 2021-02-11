@@ -4,6 +4,7 @@
   "description": "hids web app",
   "main": "serveur.js",
   "scripts": {
+    "start": "node serveur.js",
     "serveur": "nodemon serveur.js"
   },
   "author": "",

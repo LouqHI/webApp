@@ -1,51 +1,40 @@
-const http = require('http')
-const app = require('./app')
+const express = require('express')
+const bodyParser = require('body-parser')
+const mongoose = require ('mongoose')
+const path =require('path')
+const cors = require('cors')
 
+//Import Routes
+const routesProduit = require('./routes/produit')
+const routesUser = require('./routes/user')
+
+//Connexion à la DB
+const Dev_DBCONNECT = "mongodb+srv://Hummadmin:L@!laHâIlLAh7@devdb.spd36.mongodb.net/DevDB?retryWrites=true&w=majority"
+mongoose.connect(Dev_DBCONNECT,{
+    useNewUrlParser:true,
+    useUnifiedTopology: true,
+    useCreateIndex:true
+})    
+    .then(()=>console.log('Connexion à la base de donnée réussie'))
+    .catch(()=>console.log('Échec de la connexion à la BD'))
+
+// Création de l'app
+const app = express()
 const port = process.env.PORT || 4000;
 app.listen(port, console.log("Serveur en écoute sur: "+ port))
-// const normalisationPort = valeur => {
-//     const port = parseInt(valeur,10);
 
-//     if (isNaN(port)){
-//         return valeur
-//     }
-//     if(port >=0){
-//         return port;
-//     }
-//     return false
-// };
 
-// //normalisation du port
-// const port = normalisationPort( process.env.PORT || '4000') 
-// app.set('port', port)
+//Config du setHeader (facultatif si proxy)
 
-// //capteur d'erreur serveur
-// const errorHandler = error =>{
-//     if (error.syscall !== 'listen') {
-//         throw error
-//     }
-//     const address= serveur.address();
-//     const bind = typeof address === 'string' ? 'pipe' + address : 'port' + port
-//     switch (error.code){
-//         case 'EACCES':
-//             console.error(bind + 'droits utilisateurs supérieurs requis')
-//             process.exit(1);
-//             break
-//         case 'EADDRINUSE':
-//             console.error(bind + 'est déjà utilisé');
-//             process.exit(1)
-//             break;
-//         default:
-//             throw error
-//     }
-// }
 
-// const serveur = http.createServer(app);
-// serveur.on('error', errorHandler);
-// serveur.on('listening', ()=>{
-//     const address = serveur.address();
-//     const bind = typeof address === 'string' ? 'pipe ' + address : 'port ' + port
-//     console.log('Serveur en écoute sur ' + bind)
-// })
+// Body Parser
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: true}))
 
-// serveur.listen(port);
+// Fichiers statiques
+
+
+// Routes
+app.get('/', (req,res)=>{
+    res.send("Salut")
+})
