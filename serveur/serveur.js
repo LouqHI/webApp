@@ -38,3 +38,4 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.get('/', (req,res)=>{
     res.send("Salut")
 })
+app.use('/api/produit', routesProduit)
