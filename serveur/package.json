@@ -5,13 +5,16 @@
   "main": "serveur.js",
   "scripts": {
     "start": "node serveur.js",
-    "serveur": "nodemon serveur.js"
+    "dev": "concurrently \"npm run serveur\"   \" npm run serve --prefix ../client \"  ",
+    "serveur": "nodemon serveur.js",
+    "client":"npm run serve --prefix ../client"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
+    "concurrently": "^5.3.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",

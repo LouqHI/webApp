@@ -9,7 +9,7 @@ exports.creerProduit=(req,res,next)=>{
         ...req.body
     })
     produit.save()
-    .then(()=>res.status(200).json({message: `Objet créé: ${produit}`}))
+    .then(res.redirect('/produits'))
 }
 
 exports.getProduits=(req,res,next)=>{

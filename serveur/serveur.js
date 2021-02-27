@@ -9,17 +9,19 @@ const routesProduit = require('./routes/produit')
 const routesUser = require('./routes/user')
 
 //Connexion à la DB
-const Dev_DBCONNECT = "mongodb+srv://Hummadmin:L@!laHâIlLAh7@devdb.spd36.mongodb.net/DevDB?retryWrites=true&w=majority"
-mongoose.connect(Dev_DBCONNECT,{
+//Ne pas oublier la variable d'environnement MONGO_URI
+const MongoUri= "mongodb+srv://Hummadmin:L@!laHâIlLAh7@devdb.spd36.mongodb.net/DevDB?retryWrites=true&w=majority"
+mongoose.connect(MongoUri,{
     useNewUrlParser:true,
     useUnifiedTopology: true,
-    useCreateIndex:true
+    useCreateIndex:true,
 })    
     .then(()=>console.log('Connexion à la base de donnée réussie'))
     .catch(()=>console.log('Échec de la connexion à la BD'))
 
 // Création de l'app
 const app = express()
+app.use(cors())
 const port = process.env.PORT || 4000;
 app.listen(port, console.log("Serveur en écoute sur: "+ port))
 
@@ -32,10 +34,11 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
 
 // Fichiers statiques
+// app.use('/images', express.static(path.join(__dirname, 'images'))) /** on utilisera cette ligne lorsque l'on va permettre le CRUD produit users */
 
 
 // Routes
 app.get('/', (req,res)=>{
     res.send("Salut")
 })
-app.use('/api/produit', routesProduit)
+app.use('/api/produits', routesProduit)
