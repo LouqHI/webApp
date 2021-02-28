@@ -20,6 +20,12 @@ mongoose.connect(MongoUri,{
     .catch(()=>console.log('Échec de la connexion à la BD'))
 
 // Création de l'app
+if(process.env.NODE_ENV === 'production'){
+    app.use(express.static('client/dist'))
+    app.get('*', (req,res)=>{
+        res.sendFile(path.resolve(__dirname,'client','dist','index.html'))
+    })
+}
 const app = express()
 app.use(cors())
 const port = process.env.PORT || 4000;
