@@ -1,0 +1,23 @@
+{
+  "name": "hids",
+  "version": "1.0.0",
+  "description": "Application de gestion de l'inventaire",
+  "main": "serveur/serveur.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrently \"npm run serveur --prefix serveur\"   \" npm run serve --prefix client \"  "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LouqHI/webApp.git"
+  },
+  "author": "Bradley Johnson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LouqHI/webApp/issues"
+  },
+  "homepage": "https://github.com/LouqHI/webApp#readme",
+  "dependencies": {
+    "concurrently": "^6.0.0"
+  }
+}
